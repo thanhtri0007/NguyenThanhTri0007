@@ -1,0 +1,30 @@
+﻿@model NguyeThanhTri.Context.Brand
+@{
+    ViewBag.Title = "delete";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <h2>Delete </h2>
+
+            <p>Are you sure you want to delete the brand <strong>@Model.BrandName</strong>?</p>
+
+            @using (Html.BeginForm("Delete", "Brands", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.BrandId)
+
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
+            }
+        </div>
+    </section>
+    <!-- /.content -->
+
+</div>
+
+
+<!-- ./wrapper -->

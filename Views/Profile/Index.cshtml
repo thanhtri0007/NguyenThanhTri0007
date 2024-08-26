@@ -1,0 +1,50 @@
+﻿@model NguyeThanhTri.Context.User
+
+@{
+    ViewBag.Title = "My Profile";
+}
+
+
+    <h2>My Profile</h2>
+
+    <div class="profile-container">
+        <h3>Account Information</h3>
+        <p><strong>Full name:</strong> @Model.FirstName @Model.LastName</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <div class="text-center mb-4">
+        @if (Model.ImageUrl != null)
+        {
+                    <img src="@Url.Content("~/images/user/" + Model.ImageUrl)" alt="User Image" class="img-thumbnail" width="150" height="150" />
+        }
+        else
+        {
+                    <img src="~/images/pro/default.png" alt="Default Image" class="img-thumbnail" width="150" height="150" />
+        }
+        </div>
+        <!-- Thêm các thông tin khác nếu cần -->
+    </div>
+
+    <!-- Thêm CSS nội tuyến hoặc nhúng -->
+    <style>
+        .profile-container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+            .profile-container h3 {
+                margin-bottom: 20px;
+            }
+
+            .profile-container p {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+
+            .profile-container strong {
+                color: #333;
+            }
+    </style>
+    </html>

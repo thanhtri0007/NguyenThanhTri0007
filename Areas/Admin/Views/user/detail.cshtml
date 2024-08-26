@@ -1,0 +1,51 @@
+﻿@model NguyeThanhTri.Context.User
+@{
+    ViewBag.Title = "detail";
+}
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>User List</h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li class="active">User</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <h2> Detail</h2>
+            <dl class="row">
+                <dt class="col-sm-3">First Name</dt>
+                <dd class="col-sm-9">@Model.FirstName</dd>
+                <dt class="col-sm-3">Last Name</dt>
+                <dd class="col-sm-9">@Model.LastName</dd>
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">@Model.Email</dd>
+                <dt class="col-sm-3">Image</dt>
+                <dd class="col-sm-9">
+                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                            <img src="@Url.Content("~/images/user/" + Model.ImageUrl)" alt="User Image" style="width: 100px; height: auto;" />
+                    }
+                    else
+                    {
+                            <img src="@Url.Content("~/images/user/default.png")" alt="No Image" style="width: 100px; height: auto;" />
+                    }
+                </dd>
+                <dt class="col-sm-3">Role</dt>
+                <dd class="col-sm-9">
+                    @if (Model.IsAdmin)
+                    {
+                        @("Admin")
+                    }
+                    else
+                    {
+                            <span>User</span>
+                    }
+                </dd>
+
+
+            </dl>
+            @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-secondary" })
+        </div>
+    </section>
+    </div>

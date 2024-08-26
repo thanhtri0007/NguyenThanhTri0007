@@ -1,0 +1,48 @@
+﻿@model NguyeThanhTri.Context.Brand
+
+
+@{
+    ViewBag.Title = "edit";
+}
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <h2>Edit </h2>
+
+            @using (Html.BeginForm("Edit", "Brands", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.BrandId)
+
+                    <div class="form-group">
+                    @Html.LabelFor(m => m.BrandName, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.BrandName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.BrandName)
+                    </div>
+
+                    <div class="form-group">
+                    @Html.LabelFor(model => model.ImageUrl)
+
+                        <!-- Hiển thị ảnh hiện tại -->
+                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                                <div>
+                                    <img src="~/images/brand/@Model.ImageUrl" alt="Current Image" style="max-width: 200px;" />
+                                </div>
+                    }
+
+                        <!-- Trường chọn ảnh mới -->
+                        <input type="file" name="imageFile" class="form-control" />
+                    @Html.ValidationMessageFor(model => model.ImageUrl)
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    @Html.ActionLink("Cancel", "Index", new { @class = "btn btn-secondary" })
+                    </div>
+            }
+        </div>
+    </section>
+
+    </div>
+

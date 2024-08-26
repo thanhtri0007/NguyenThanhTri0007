@@ -1,0 +1,58 @@
+﻿@model IEnumerable<NguyeThanhTri.Context.Brand>
+
+@{
+    ViewBag.Title = "index";
+}
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <h2>Brands</h2>
+
+            <p>
+                @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-primary" })
+            </p>
+
+            <table class="table table-striped">
+                <thead class="table-success">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var brand in Model)
+                    {
+                            <tr>
+                                <td>@brand.BrandId</td>
+                                <td>@brand.BrandName</td>
+                                <td>
+                                @if (!string.IsNullOrEmpty(brand.ImageUrl))
+                                {
+                                            <img src="~/images/brand/@brand.ImageUrl" alt="brand Image" width="50" height="50" class="img-thumbnail" />
+                                }
+                                else
+                                {
+                                            <span>No Image</span>
+                                }
+                                </td>
+
+                                <td>
+                                    <div class="btn-group" role="group">
+                                    @Html.ActionLink("Edit", "Edit", new { id = brand.BrandId }, new { @class = "btn btn-sm btn-warning" })
+                                    @Html.ActionLink("Detail", "Detail", new { id = brand.BrandId }, new { @class = "btn btn-sm btn-info" })
+                                    @using (Html.BeginForm("Delete", "Brands", new { id = brand.BrandId }, FormMethod.Post, new { @class = "d-inline" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    }
+                                    </div>
+                                </td>
+                            </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>

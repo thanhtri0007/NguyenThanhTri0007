@@ -1,0 +1,49 @@
+﻿@model NguyeThanhTri.Context.User
+
+@{
+    ViewBag.Title = "delete";
+}
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>User List</h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li class="active">User</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <h2>Delete</h2>
+            <div class="alert alert-danger">
+                <strong>Warning!</strong> Are you sure you want to delete this user?
+            </div>
+            <dl class="row">
+                <dt class="col-sm-3">First Name</dt>
+                <dd class="col-sm-9">@Model.FirstName</dd>
+                <dt class="col-sm-3">Last Name</dt>
+                <dd class="col-sm-9">@Model.LastName</dd>
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">@Model.Email</dd>
+                <dt class="col-sm-3">Image</dt>
+                <dd class="col-sm-9">
+                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                            <img src="@Url.Content("~/images/user/" + Model.ImageUrl)" alt="User Image" style="width: 100px; height: auto;" />
+                    }
+                    else
+                    {
+                            <img src="@Url.Content("~/images/user/default.png")" alt="No Image" style="width: 100px; height: auto;" />
+                    }
+                </dd>
+            </dl>
+            @using (Html.BeginForm("Delete", "Users", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Id)
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                @Html.ActionLink("Cancel", "Index", new { @class = "btn btn-secondary" })
+            }
+        </div>
+    </section>
+
+    </div>
